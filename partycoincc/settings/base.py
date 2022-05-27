@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.table_block',
     'wagtail.admin',
+    'wagtail.contrib.postgres_search',
 
     # Django
     'storages',
@@ -209,6 +210,7 @@ WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.database',
+        'SEARCH_CONFIG': 'english',
     }
 }
 

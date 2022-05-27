@@ -4,10 +4,10 @@ from .base import *  # noqa
 DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'o760y3hm3!v#s$f&h&g0_rbd0=hq65^wvt(1_32lt3v@@s*ln7')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'secret')
 
 # Add your site's domain name(s) here.
-ALLOWED_HOSTS = ['partycoin.cc']
+ALLOWED_HOSTS = ['www.partycoin.cc', 'partycoin.cc']
 
 # To send email from the server, we recommend django_sendmail_backend
 # Or specify your own email backend such as an SMTP server.
@@ -64,8 +64,8 @@ TEMPLATES = [
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': os.path.join(BASE_DIR, 'cache'),  # noqa
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',  # noqa
         'KEY_PREFIX': 'coderedcms',
         'TIMEOUT': 14400,  # in seconds
     }

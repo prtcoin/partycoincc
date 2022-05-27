@@ -1,0 +1,36 @@
+app:
+  debug: "off"
+  database_name: "partycoincc"
+  database_user: "partycoincc"
+  database_password: "vault:secret/data/partycoin/#database_password"
+  database_host: "vault:secret/data/partycoin/#database_host"
+  database_port: "25060"
+  awsAccessKeyID: "vault:secret/data/partycoin/#aws_access_id"
+  awsSecretAccessKeyID: "vault:secret/data/partycoin/#aws_secret_access_key_id"
+  secretKey: "vault:secret/data/partycoin/#secret_key"
+  fieldEncryptionKey: "vault:secret/data/partycoin/#field_encryption_key"
+
+image:
+  repository: veriganet/partycoincc
+  tag: latest
+  pullPolicy: Always
+
+ingress:
+  enabled: true
+  class: nginx
+  host:
+
+
+service:
+  type: ClusterIP
+  port: 8000
+
+resources:
+  requests:
+    cpu: "150m"
+    memory: "350Mi"
+  limits:
+    cpu: "300m"
+    memory: "350Mi"
+
+replicaCount: 2

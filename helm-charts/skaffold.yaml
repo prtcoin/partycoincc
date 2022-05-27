@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+profiles:
+  - name: pre
+    deploy:
+      kubectl:
+        manifests:
+          - ./pre.yaml
+  - name: stg
+    deploy:
+      helm:
+        releases:
+          - name: partycoincc-stg
+            chartPath: ./helm-charts/partycoincc
+            namespace: partycoin-stg
+            setValues:
+              image.tag: stg
+              ingress.host: stg.partycoin.cc
+              vault.role: partycoin
+  - name: prod
+    deploy:
+      helm:
+        releases:
+          - name: partycoincc
+            chartPath: ./helm-charts/partycoincc
+            namespace: partycoin
+            setValues:
+              image.tag: latest
+              ingress.host: partycoin.cc
+              vault.role: partycoin
+

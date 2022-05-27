@@ -12,6 +12,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WAGTAIL_CACHE = False
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',  # noqa
+        'KEY_PREFIX': 'coderedcms',
+        'TIMEOUT': 14400,  # in seconds
+    }
+}
+
 try:
     from .local_settings import *  # noqa
 except ImportError:
